@@ -237,16 +237,8 @@ class ImsRain(Entity):
     @property
     def state(self):
         try:
-            if self._language =="he":
-                if self._api_client.current_weather.rain == None:
-                    return "לא יורד"
-                else:
-                    return "יורד"
-            else:
-                if self._api_client.current_weather.rain == None:
-                    return "Not Raining"
-                else:
-                    return "Raining"
+            rain_output = self._api_client.current_weather.rain
+            return float(0 if rain_output is None else rain_output)
         except:
             pass
 
